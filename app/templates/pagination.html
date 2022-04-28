@@ -1,0 +1,36 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block content%}
+<div class="download-cv-box">
+    <a type="submit"  href="{% url 'download' %}" name="download"> Download CSV </a>
+</div>
+<div class="fda-table-section">
+    <div class="container-fluid">
+        <table class="fda-table table table-responsive table-striped">
+            <tr>
+                {% for colName in headerInfo %}
+                <th>{{colName}}</th>
+                {% endfor%}
+            </tr>
+
+        
+                {% for row in data %}
+                <tr>
+                {% for ele in row %}
+                <td>{{ele}}</td>
+                {% endfor %}
+            </tr>
+                {% endfor %}
+            
+        </table>
+    </div>
+</div>
+<div class="pagination-box">
+{% for i in noOfPages %}
+<a type="submit" value={{i}} href="{% url 'pagination' %}?pageNo={{i}}" name="pageNo"> {{i}}</a>
+
+
+
+{% endfor %}
+</div>
+{% endblock %}
